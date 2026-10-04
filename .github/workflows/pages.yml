@@ -21,7 +21,7 @@ jobs:
       - name: Keep only the public site files
         run: |
           mkdir _site
-          cp -r index.html style.css app.js data.js robots.txt sitemap.xml assets _site/
+          cp -r index.html style.css app.js data.js robots.txt sitemap.xml CNAME assets _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
