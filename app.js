@@ -6,8 +6,8 @@
   const TORN_FOOT = 'polygon(0 60%,5% 30%,11% 55%,17% 20%,23% 50%,30% 25%,36% 60%,43% 28%,49% 52%,56% 18%,62% 48%,69% 26%,75% 62%,82% 22%,88% 50%,94% 24%,100% 45%,100% 100%,0 100%)';
   const PAGES = ['programme', 'competitions', 'students', 'parents'];
   const YT_ID = 'VRwNGOzqhO4';
-  const state = { route: '', filter: 0, openFaq: 0, toast: '', sound: false };
-  const ytSrc = () => 'https://www.youtube.com/embed/' + YT_ID + '?autoplay=1&mute=' + (state.sound ? 0 : 1) + '&controls=' + (state.sound ? 1 : 0) + (state.sound ? '' : '&loop=1&playlist=' + YT_ID) + '&rel=0&modestbranding=1&playsinline=1&origin=' + encodeURIComponent(location.origin);
+  const state = { route: '', filter: 0, openFaq: 0, toast: '' };
+  const ytSrc = () => 'https://www.youtube.com/embed/' + YT_ID + '?autoplay=1&mute=1&controls=1&loop=1&playlist=' + YT_ID + '&rel=0&modestbranding=1&playsinline=1&origin=' + encodeURIComponent(location.origin);
   let toastTimer;
 
   const gear = (size, color = '#B84242', style = '') =>
@@ -72,8 +72,7 @@
         <div style="position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#000">
           <img src="https://i.ytimg.com/vi/${YT_ID}/maxresdefault.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
           <iframe id="trailer" src="${ytSrc()}" title="Starters Robotics Group trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block"></iframe>
-          ${state.sound ? '' : `<button id="sound" class="pill-btn" style="position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:8px;background:rgba(35,31,32,.85);color:#FFFFFF;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:9px 16px;font:600 13px 'Poppins',sans-serif;cursor:pointer;backdrop-filter:blur(6px)">▶  Watch with sound</button>`}
-          <a class="pill-btn" href="https://youtu.be/${YT_ID}" target="_blank" rel="noopener" style="position:absolute;right:14px;bottom:14px;background:rgba(35,31,32,.85);color:#FFFFFF;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:9px 14px;font:600 12px 'Poppins',sans-serif">Open on YouTube ↗</a>
+          
         </div>
       </div>
     </div>
@@ -256,8 +255,6 @@
 
   function wire() {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const snd = document.getElementById('sound');
-    if (snd) snd.onclick = () => { state.sound = true; document.getElementById('trailer').src = ytSrc(); snd.remove(); };
     // Lazy-load and play clips only while visible
     const vids = document.querySelectorAll('video[data-lazy]');
     if (vids.length && 'IntersectionObserver' in window && !reduce) {
