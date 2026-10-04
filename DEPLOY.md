@@ -11,3 +11,8 @@ starterstech.com's DNS is on HostGator (ns4007/ns4008.hostgator.com), so the sub
 ## Before it goes live
 - `data.js` → `SITE.SHOW_STUDENTS` is `false`: the Students pages use SAMPLE profiles from the design. Replace them with real, parent-consented profiles before switching it to `true`.
 - Add the real Starters Robotics Group logo vector when you have it (the wordmark is a typeset reconstruction).
+
+## GitHub → GitHub Pages → HostGator
+- Repo: https://github.com/teepreneur/StartersRoboticsGroups (branch `main`).
+- GitHub Pages preview: https://teepreneur.github.io/StartersRoboticsGroups/ (repo → Settings → Pages → Source: **GitHub Actions**, one-time).
+- HostGator: cPanel → **Git™ Version Control** → Create → clone URL `https://github.com/teepreneur/StartersRoboticsGroups.git`, repository path = the subdomain's document root (empty folder). After later pushes use **Manage → Update from Remote**.
