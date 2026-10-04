@@ -5,9 +5,7 @@
   const TORN = 'polygon(0 42%,5% 20%,11% 40%,17% 12%,23% 36%,30% 16%,36% 42%,43% 18%,49% 38%,56% 10%,62% 34%,69% 18%,75% 44%,82% 14%,88% 36%,94% 16%,100% 32%,100% 100%,0 100%)';
   const TORN_FOOT = 'polygon(0 60%,5% 30%,11% 55%,17% 20%,23% 50%,30% 25%,36% 60%,43% 28%,49% 52%,56% 18%,62% 48%,69% 26%,75% 62%,82% 22%,88% 50%,94% 24%,100% 45%,100% 100%,0 100%)';
   const PAGES = ['programme', 'competitions', 'students', 'parents'];
-  const YT_ID = 'VRwNGOzqhO4';
   const state = { route: '', filter: 0, openFaq: 0, toast: '' };
-  const ytSrc = () => 'https://www.youtube.com/embed/' + YT_ID + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + YT_ID + '&rel=0&modestbranding=1&playsinline=1&origin=' + encodeURIComponent(location.origin);
   let toastTimer;
 
   const gear = (size, color = '#B84242', style = '') =>
@@ -70,8 +68,7 @@
       <div style="position:relative;width:100%;padding:0 4% 4% 0">
         <div style="position:absolute;inset:6% 0 0 6%;background:#B84242;border-radius:24px"></div>
         <div style="position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#000">
-          <img src="https://i.ytimg.com/vi/${YT_ID}/maxresdefault.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
-          <iframe id="trailer" src="${ytSrc()}" title="Starters Robotics Group trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block"></iframe>
+          <video id="trailer" src="assets/trailer.mp4" poster="assets/trailer-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Starters Robotics Group trailer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
           
         </div>
       </div>
@@ -255,6 +252,15 @@
 
   function wire() {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hero = document.getElementById('trailer');
+    if (hero) {
+      if (reduce) { hero.pause(); hero.controls = true; }
+      else {
+        // Muted autoplay; only fall back to native controls if the browser still refuses once the video is ready.
+        const go = () => hero.play().catch(() => { hero.controls = true; });
+        if (hero.readyState >= 3) go(); else hero.addEventListener('canplay', go, { once: true });
+      }
+    }
     // Lazy-load and play clips only while visible
     const vids = document.querySelectorAll('video[data-lazy]');
     if (vids.length && 'IntersectionObserver' in window && !reduce) {
