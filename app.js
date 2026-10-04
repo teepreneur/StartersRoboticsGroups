@@ -94,7 +94,7 @@
         ${hexPhoto('vexkids.jpg', 'Students inspecting a VEX robot')}
       </div>
       <div class="reel">
-        ${['vex1', 'field1', 'lab1'].map(c => `<div class="vid"><video data-lazy="assets/clips/${c}.mp4" muted loop playsinline preload="none" aria-label="Robot run clip"></video></div>`).join('')}
+        ${['vex1', 'field1', 'arm'].map(c => `<div class="vid"><video data-reel src="assets/clips/${c}.mp4#t=0.1" muted loop playsinline preload="metadata" aria-label="Robot run clip"></video></div>`).join('')}
       </div>
     </div>
   </section>
@@ -261,13 +261,12 @@
         if (hero.readyState >= 3) go(); else hero.addEventListener('canplay', go, { once: true });
       }
     }
-    // Lazy-load and play clips only while visible
-    const vids = document.querySelectorAll('video[data-lazy]');
+    // Reel clips show their first frame straight away and play only while on screen.
+    const vids = document.querySelectorAll('video[data-reel]');
     if (vids.length && 'IntersectionObserver' in window && !reduce) {
       const io = new IntersectionObserver((es) => es.forEach(e => {
-        const v = e.target;
-        if (e.isIntersecting) { if (!v.src) v.src = v.dataset.lazy; v.play().catch(() => {}); } else { v.pause(); }
-      }), { rootMargin: '200px' });
+        if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause();
+      }), { threshold: 0.35 });
       vids.forEach(v => io.observe(v));
     }
     document.querySelectorAll('[data-filter]').forEach(b => b.onclick = () => { state.filter = +b.dataset.filter; state.keepScroll = true; render(); });
