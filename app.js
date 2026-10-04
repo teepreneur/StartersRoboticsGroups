@@ -7,7 +7,7 @@
   const PAGES = ['programme', 'competitions', 'students', 'parents'];
   const YT_ID = 'VRwNGOzqhO4';
   const state = { route: '', filter: 0, openFaq: 0, toast: '' };
-  const ytSrc = () => 'https://www.youtube.com/embed/' + YT_ID + '?autoplay=1&mute=1&controls=1&loop=1&playlist=' + YT_ID + '&rel=0&modestbranding=1&playsinline=1&origin=' + encodeURIComponent(location.origin);
+  const ytSrc = () => 'https://www.youtube.com/embed/' + YT_ID + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + YT_ID + '&rel=0&modestbranding=1&playsinline=1&origin=' + encodeURIComponent(location.origin);
   let toastTimer;
 
   const gear = (size, color = '#B84242', style = '') =>
