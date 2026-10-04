@@ -1,0 +1,22 @@
+html,body{margin:0;background:#231F20;color:#FFFFFF;font-family:'Poppins',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#E07070;text-decoration:none}
+a:hover{color:#FFFFFF}
+*{box-sizing:border-box}
+button{font-family:inherit}
+img,video{max-width:100%}
+.btn-red{background:#B84242;color:#fff}
+.btn-red:hover{background:#9A3338;color:#fff}
+.btn-ghost:hover{border-color:#fff!important;color:#fff}
+.chip:hover{border-color:#B84242!important;color:#fff}
+.card-link:hover{border-color:#B84242!important;color:#fff}
+.student-card:hover{background:#3A3536!important;color:#fff}
+.pill-btn:hover{background:#B84242!important;border-color:#B84242!important;color:#fff!important}
+.hex{clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.gallery .ph{position:relative;aspect-ratio:4/3;border-radius:20px;overflow:hidden;background:#2E2A2B}
+.gallery .ph img,.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.reel{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.reel .vid{position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#000}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#231F20;padding:10px 16px;z-index:100}
+.skip:focus{left:8px;top:8px}
+:focus-visible{outline:3px solid #E07070;outline-offset:2px}
