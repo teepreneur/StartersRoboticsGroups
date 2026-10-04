@@ -23,3 +23,9 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 </IfModule>
 
 AddType video/mp4 .mp4
+
+# Never serve git metadata or docs (cPanel Git may clone straight into this folder)
+RedirectMatch 404 /\.git
+<FilesMatch "^(DEPLOY\.md|\.gitignore)$">
+  Require all denied
+</FilesMatch>
